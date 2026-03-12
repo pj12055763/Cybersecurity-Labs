@@ -1,0 +1,72 @@
+Splunk SIEM Alert Triage
+
+## Overview
+This lab simulated real SOC analyst responsibilities by investigating alerts using Splunk. The objective was to determine whether suspicious activity represented a real security threat.
+
+## Tools Used
+- Splunk SIEM
+- Linux authentication logs
+- Windows security logs
+- Threat intelligence platforms
+
+## Skills Demonstrated
+- SIEM querying
+- Brute force detection
+- Persistence investigation
+- Web shell detection
+
+## Investigation Scenario 1 – Brute Force Attack
+
+Initial alerts indicated repeated authentication attempts from the IP address:
+
+10.10.242.248
+
+Splunk query used:
+
+index="linux-alert" sourcetype="linux_secure"
+
+Further analysis revealed:
+
+- 503 login attempts targeting user john.smith
+- Multiple invalid username attempts
+
+This behavior indicated a brute force attack.
+
+The investigation confirmed that the attacker eventually achieved successful authentication, classifying the alert as a True Positive.
+
+## Investigation Scenario 2 – Persistence via Scheduled Task
+
+A Windows alert indicated the creation of a suspicious scheduled task.
+
+Investigation revealed that the task executed commands to:
+
+- Download a remote executable
+- Execute it using PowerShell
+
+This behavior indicated persistence and possible malware deployment.
+
+## Investigation Scenario 3 – Web Shell Activity
+
+Web server logs showed suspicious activity from IP:
+
+171.251.232.40
+
+Indicators included:
+
+- Brute force attempts against WordPress login
+- Requests involving b374k.php, a known web shell
+
+The activity confirmed that the attacker successfully uploaded and executed a web shell.
+
+## Final Assessment
+
+All investigated alerts were classified as True Positive security incidents and escalated for deeper investigation.
+
+## Key Takeaways
+
+- Correlating logs across multiple sources is critical during investigations.
+- Web shell activity often follows initial exploitation attempts.
+- SOC Level 1 analysts are responsible for identifying threats and escalating them appropriately.
+
+## Screenshots
+Screenshots demonstrate Splunk queries, log analysis, and attack indicators.

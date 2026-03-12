@@ -1,0 +1,53 @@
+AWS S3 Attack and Defense Lab
+
+## Overview
+This lab explored common security risks associated with misconfigured Amazon S3 buckets. The objective was to identify publicly accessible buckets and use AWS CLI tools to investigate potential sensitive data exposure.
+
+## Tools Used
+- AWS CLI
+- Amazon S3
+- Amazon EC2
+
+## Skills Demonstrated
+- Cloud security analysis
+- S3 bucket enumeration
+- Misconfiguration exploitation
+- AWS CLI usage
+
+## Investigation Process
+
+### 1. Identifying Public S3 Buckets
+Public S3 buckets may expose sensitive data if access controls are misconfigured.
+
+Common bucket naming patterns were investigated to locate accessible storage resources.
+
+### 2. Enumerating Bucket Contents
+The AWS CLI was used to synchronize and download the contents of the bucket:
+
+aws s3 sync s3://assets.bestcloudcompany.org . --no-sign-request
+
+The --no-sign-request flag confirmed that the bucket allowed public access without authentication.
+
+### 3. Identifying Sensitive Files
+During analysis of downloaded files, a binary image file was discovered.
+
+This file was identified as an Amazon Machine Image (AMI) used to deploy EC2 instances.
+
+### 4. Restoring the Machine Image
+The AMI was restored using AWS CLI commands and used to launch an EC2 instance.
+
+Example command:
+
+aws ec2 run-instances --image-id <AMI_ID>
+
+### 5. Instance Investigation
+Once the instance was deployed, it was accessed via SSH to analyze the system contents and identify potential sensitive information.
+
+## Key Takeaways
+
+- Public S3 buckets remain a major source of cloud data breaches.
+- Cloud misconfigurations can allow attackers to access sensitive system images.
+- AWS CLI tools can be used to enumerate and investigate cloud resources.
+
+## Screenshots
+Screenshots demonstrate S3 enumeration, AWS CLI commands, and EC2 instance deployment.

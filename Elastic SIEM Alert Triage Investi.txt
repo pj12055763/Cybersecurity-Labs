@@ -1,0 +1,78 @@
+# Elastic SIEM Alert Triage Investigation
+
+## Overview
+This lab focused on investigating security alerts using Elastic SIEM. The goal was to analyze suspicious web traffic and determine whether the activity represented a legitimate security incident.
+
+## Tools Used
+- Elastic SIEM
+- Kibana
+- IIS Web Logs
+
+## Skills Demonstrated
+- SIEM query building
+- Log analysis
+- Attack pattern identification
+- Incident escalation
+
+## Investigation Process
+
+### 1. Initial Alert Review
+An alert indicated that the IP address 203.0.113.55 was making suspicious HTTP requests.
+
+Query used:
+
+_index:weblogs AND client.ip:203.0.113.55 AND http.request.method:POST
+
+This query revealed repeated POST requests targeting the proxyLogon.ecp endpoint.
+
+### 2. Identifying Exploitation Attempts
+Further analysis showed that the user-agent and request patterns were consistent with exploitation attempts targeting the ProxyLogon vulnerability.
+
+### 3. Web Shell Activity Investigation
+The following query was used to investigate possible web shell usage:
+
+_index:weblogs AND client.ip:203.0.113.55 AND http.request.method:GET AND errorEE.aspx
+
+The results showed commands embedded within the URL path, indicating remote command execution through a web shell.
+
+### 4. Host Activity Investigation
+The investigation pivoted to Windows Security logs using Event ID 4624 to confirm suspicious authentication activity.
+
+Query example:
+
+winlog.event_id:4624 AND winlog.event_data.TargetUserName:Administrator
+
+Results confirmed:
+- Administrator login
+- Remote access from the same suspicious IP address
+
+### 5. Post-Compromise Activity
+Additional queries identified:
+- Creation of new user accounts
+- Privilege escalation attempts
+- PowerShell discovery commands
+
+Examples included:
+
+whoami  
+whoami /priv
+
+### 6. Final Assessment
+The activity was classified as a True Positive security incident.
+
+Attack chain identified:
+
+1. ProxyLogon exploitation
+2. Web shell deployment
+3. Administrator login
+4. Privilege escalation
+5. PowerShell reconnaissance
+
+## Key Takeaways
+
+- SIEM correlation across multiple log sources is essential during investigations.
+- Web server logs can reveal early indicators of exploitation attempts.
+- Privileged account activity following exploitation is a strong indicator of compromise.
+
+## Screenshots
+Screenshots demonstrate Kibana queries, log tables, and command execution artifacts.

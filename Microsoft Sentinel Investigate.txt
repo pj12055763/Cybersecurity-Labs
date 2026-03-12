@@ -1,0 +1,64 @@
+# Microsoft Sentinel Incident Investigation
+
+## Overview
+This lab demonstrates how to investigate and triage security incidents using Microsoft Sentinel. The objective was to analyze alerts, investigate entities, and determine whether escalation to a higher-level SOC analyst was required.
+
+## Tools Used
+- Microsoft Sentinel
+- Azure Log Analytics
+- MITRE ATT&CK Framework
+
+## Skills Demonstrated
+- Incident triage
+- Alert investigation
+- Entity analysis
+- SOC escalation procedures
+
+## Investigation Process
+
+### 1. Reviewing Incidents
+The investigation began by reviewing open incidents in the Microsoft Sentinel dashboard.
+
+Key actions:
+- Selected the incident from the Incidents dashboard
+- Assigned the incident to myself as the owner
+- Updated status from New → Active
+
+### 2. Reviewing Incident Details
+The Incident Details page was used to examine:
+
+- Related alerts
+- Evidence associated with the incident
+- Timeline of security events
+
+The timeline helped visualize the sequence of alerts and related activity.
+
+### 3. Log Investigation
+Using the Link to Log Analytics feature, the event logs associated with the alert were analyzed.
+
+Key indicators investigated included:
+- Source IP address
+- User accounts
+- Host activity
+
+### 4. Entity Investigation
+Microsoft Sentinel automatically extracted entities such as:
+
+- IP addresses
+- Hosts
+- Accounts
+
+The suspicious IP address was selected and further investigated, revealing additional contextual information including geolocation.
+
+### 5. Escalation Decision
+Based on the collected evidence, the incident required escalation to a SOC Level 2 analyst for deeper investigation and threat hunting.
+
+## Key Takeaways
+
+- Microsoft Sentinel integrates alerts from multiple security tools into a centralized investigation interface.
+- Entities provide useful pivot points during investigations.
+- Proper incident ownership and documentation are essential for SOC workflows.
+- Escalation procedures ensure complex incidents are handled by senior analysts.
+
+## Screenshots
+Screenshots included demonstrate the incident dashboard, entity investigation, and log analysis steps.

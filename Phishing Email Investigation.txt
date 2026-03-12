@@ -1,0 +1,64 @@
+Phishing Email Investigation
+
+## Overview
+This lab focused on analyzing a suspicious email reported by an employee. The objective was to determine whether the message was legitimate or part of a phishing campaign.
+
+## Tools Used
+- Thunderbird Email Client
+- VirusTotal
+- WHOIS Lookup
+- DMARC/SPF/DKIM analysis tools
+
+## Skills Demonstrated
+- Email header analysis
+- File hash analysis
+- Threat intelligence usage
+- Phishing detection
+
+## Investigation Process
+
+### 1. Email Analysis
+The email was opened in Thunderbird to analyze:
+
+- Sender address
+- Message headers
+- Attached files
+
+The greeting style and unexpected attachment raised suspicion.
+
+### 2. Header Investigation
+Email headers were analyzed to determine:
+
+- Sending IP address
+- Mail server origin
+- Authentication results
+
+### 3. Domain and Infrastructure Analysis
+WHOIS lookups were performed on the sending IP address to identify the hosting provider.
+
+### 4. File Analysis
+The attachment hash was generated and uploaded to VirusTotal for malware analysis.
+
+Results showed multiple detections from security vendors.
+
+### 5. Email Authentication Checks
+SPF, DKIM, and DMARC records were analyzed to verify sender authenticity.
+
+Authentication failures indicated that the sender was spoofed.
+
+## Final Assessment
+The email was classified as a phishing attempt.
+
+Indicators included:
+- Suspicious attachment
+- Authentication failures
+- Malware detection
+
+## Key Takeaways
+
+- Email authentication mechanisms help detect spoofing.
+- Threat intelligence platforms provide fast malware identification.
+- Employee reporting plays a critical role in phishing detection.
+
+## Screenshots
+Screenshots demonstrate email headers, VirusTotal results, and domain investigation.
